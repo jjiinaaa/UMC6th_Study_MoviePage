@@ -6,7 +6,6 @@ import PopularPage from "./pages/PopularPage";
 import NowPlayingPage from "./pages/NowPlayingPage";
 import TopRatedPage from "./pages/TopRatePage";
 import UpcomingPage from "./pages/UpcommigPage";
-// import { Loading } from "./components/SpinnerLoader";
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
-          {/* <Loading /> */}
           <Route path="/popular" element={<PopularPage />} />
           <Route path="/nowplaying" element={<NowPlayingPage />} />
           <Route path="/toprated" element={<TopRatedPage />} />

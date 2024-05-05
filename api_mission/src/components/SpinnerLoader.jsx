@@ -1,6 +1,7 @@
 "use client";
 
 import { Spinner } from "flowbite-react";
+import "./Spinner.css";
 
 export function Loading() {
   return (

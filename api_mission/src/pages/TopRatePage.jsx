@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieComponent from "../components/movieComponent";
+import { Loading } from "../components/SpinnerLoader";
 
 const TopRatedPage = () => {
   const [movieData, setMovieData] = useState([]);
@@ -25,7 +26,11 @@ const TopRatedPage = () => {
     getMovieData();
   });
 
-  return <MovieComponent movieData={movieData} />;
+  return movieData.length === 0 ? (
+    <Loading />
+  ) : (
+    <MovieComponent movieData={movieData} />
+  );
 };
 
 export default TopRatedPage;
