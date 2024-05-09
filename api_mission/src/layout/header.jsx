@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
@@ -27,20 +28,36 @@ const StyleLink = styled(Link)`
   padding: 16px;
   color: fff;
   &:hover {
-    transform: scale(1.2);
-    color: #fff;
-    background-color: black;
+    transform: scale(1.1);
+    color: orange;
+  }
+`;
+
+const StyleLinkLogin = styled(Link)`
+  text-decoration: none;
+  padding: 16px;
+  color: orange;
+  &:hover {
+    transform: scale(1.1);
+    color: orange;
   }
 `;
 
 const header = () => {
+  const [loginId, setLoginId] = useState(false);
+  const onLogin = () => {
+    setLoginId(!loginId);
+  };
+
   return (
     <Container>
       <LeftContainer>
         <StyleLink to="/">UMC Movie</StyleLink>
       </LeftContainer>
       <RightContainer>
-        <StyleLink to="/sign up">회원가입</StyleLink>
+        <StyleLinkLogin onClick={onLogin}>
+          {loginId ? "log in" : "log out"}
+        </StyleLinkLogin>
         <StyleLink to="/popular"> Popular</StyleLink>
         <StyleLink to="/nowplaying">Now Playing</StyleLink>
         <StyleLink to="/toprated">Top Rated</StyleLink>
