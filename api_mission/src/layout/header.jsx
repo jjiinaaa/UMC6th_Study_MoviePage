@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Container = styled.div`
@@ -48,6 +48,12 @@ const header = () => {
   const onLogin = () => {
     setLoginId(!loginId);
   };
+  // const [clickSignUp, setClickSignUp] = useState("");
+  // const navigate = useNavigate();
+  // const goSignUp = (e) => {
+  //   navigate("/signup");
+  //   setClickSignUp(e.target.textContent);
+  // };
 
   return (
     <Container>
@@ -55,6 +61,7 @@ const header = () => {
         <StyleLink to="/">UMC Movie</StyleLink>
       </LeftContainer>
       <RightContainer>
+        <StyleLink to="/signup">회원가입</StyleLink>
         <StyleLinkLogin onClick={onLogin}>
           {loginId ? "log in" : "log out"}
         </StyleLinkLogin>

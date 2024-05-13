@@ -7,6 +7,7 @@ import NowPlayingPage from "./pages/NowPlayingPage";
 import TopRatedPage from "./pages/TopRatePage";
 import UpcomingPage from "./pages/UpcommigPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<MainPage />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/popular" element={<PopularPage />} />
           <Route path="/nowplaying" element={<NowPlayingPage />} />
           <Route path="/toprated" element={<TopRatedPage />} />
