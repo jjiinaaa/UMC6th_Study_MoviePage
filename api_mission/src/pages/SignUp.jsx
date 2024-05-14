@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const BackGround = styled.div`
   padding-top: 128px;
-  background-color: #000;
+  background-color: #222;
   height: 100%;
   color: #fff;
   display: flex;
@@ -40,14 +40,15 @@ const InputBox = styled.input`
 `;
 
 const ErrorMessage = styled.div`
+  margin-top: 2px;
   color: red;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
 `;
 
 const SubmitButton = styled.button`
   display: block;
-  margin: 0 auto;
+  margin: 30px auto 0;
 `;
 
 const SignUp = () => {
@@ -242,7 +243,7 @@ const SignUp = () => {
             <div>
               <InputBox
                 type="text"
-                placeholder="박진하"
+                placeholder="김정은"
                 id="name"
                 onChange={onName}
               />
@@ -278,7 +279,7 @@ const SignUp = () => {
             <div>
               <InputBox
                 type="password"
-                placeholder="비밀번호 입력"
+                placeholder="비밀번호 입력 : 영문, 숫자, 특수기호 포함 및 4~12자"
                 id="password"
                 onChange={onPassword}
               />

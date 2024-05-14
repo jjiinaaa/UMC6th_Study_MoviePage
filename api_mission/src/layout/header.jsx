@@ -5,16 +5,18 @@ import { useState } from "react";
 const Container = styled.div`
   width: 100%;
   height: 8%;
-  background-color: #0c0c41;
+  background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   position: fixed;
   z-index: 10;
+  font-size: 14px;
 `;
 const LeftContainer = styled.div`
   display: flex;
   align-items: center;
+  font-size: 18px;
 `;
 
 const RightContainer = styled.div`
@@ -23,13 +25,24 @@ const RightContainer = styled.div`
   align-items: center;
 `;
 
+const StyleLinkTitle = styled(Link)`
+  text-decoration: none;
+  padding: 16px;
+  color: white;
+  font-weight: 900;
+  &:hover {
+    color: white;
+  }
+`;
+
 const StyleLink = styled(Link)`
   text-decoration: none;
   padding: 16px;
-  color: fff;
+  color: #fff;
   &:hover {
     transform: scale(1.1);
-    color: orange;
+    color: white;
+    border-bottom: 2px solid #fff;
   }
 `;
 
@@ -40,6 +53,7 @@ const StyleLinkLogin = styled(Link)`
   &:hover {
     transform: scale(1.1);
     color: orange;
+    border-bottom: 2px solid #fff;
   }
 `;
 
@@ -58,12 +72,12 @@ const header = () => {
   return (
     <Container>
       <LeftContainer>
-        <StyleLink to="/">UMC Movie</StyleLink>
+        <StyleLinkTitle to="/">UMC Movie</StyleLinkTitle>
       </LeftContainer>
       <RightContainer>
         <StyleLink to="/signup">회원가입</StyleLink>
         <StyleLinkLogin onClick={onLogin}>
-          {loginId ? "log in" : "log out"}
+          {loginId ? "로그인" : "로그아웃"}
         </StyleLinkLogin>
         <StyleLink to="/popular"> Popular</StyleLink>
         <StyleLink to="/nowplaying">Now Playing</StyleLink>

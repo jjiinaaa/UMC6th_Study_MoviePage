@@ -1,25 +1,33 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Background = styled.div`
   width: 100%;
-  background-color: darkblue;
+  background-color: #222;
 `;
 
 const MovieContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-
   padding: 100px 40px;
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media screen and (max-width: 767px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const ContentContainer = styled.div`
   background-color: black;
   padding: 10px;
   position: relative;
-
+  overflow-y: auto;
   &:hover .movie-poster-container {
-    opacity: 0.5;
+    opacity: 0.2;
   }
 `;
 
@@ -28,7 +36,7 @@ const MovieOverview = styled.div`
   display: none;
   color: #fff;
   padding: 25px;
-  z-index: 9999;
+  z-index: 9;
   word-wrap: break-word;
   ${ContentContainer}:hover & {
     display: block;
@@ -37,6 +45,7 @@ const MovieOverview = styled.div`
 
 const MoviePoster = styled.img`
   width: 100%;
+  display: block;
   padding: 5px;
   box-sizing: border-box;
   z-index: 1;
@@ -51,6 +60,21 @@ const MovieData = styled.div`
 `;
 
 const MovieComponent = ({ movieData }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (movie) => {
+    navigate(`/movie/${movie.title}`, {
+      state: {
+        poster_path: movie.poster_path,
+        title: movie.title,
+        overview: movie.overview,
+        vote_average: movie.vote_average,
+        release_date: movie.release_date,
+        backdrop_path: movie.backdrop_path,
+      },
+    });
+  };
+
   return (
     <Background>
       <MovieContainer>
