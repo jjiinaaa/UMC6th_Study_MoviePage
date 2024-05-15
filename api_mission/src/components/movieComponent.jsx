@@ -17,7 +17,8 @@ const MovieContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
   @media screen and (max-width: 767px) {
-    grid-template-columns: repeat(1, 1fr);
+    width: 80%;
+    margin: 0 auto;
   }
 `;
 
@@ -60,21 +61,6 @@ const MovieData = styled.div`
 `;
 
 const MovieComponent = ({ movieData }) => {
-  const navigate = useNavigate();
-
-  const handleClick = (movie) => {
-    navigate(`/movie/${movie.title}`, {
-      state: {
-        poster_path: movie.poster_path,
-        title: movie.title,
-        overview: movie.overview,
-        vote_average: movie.vote_average,
-        release_date: movie.release_date,
-        backdrop_path: movie.backdrop_path,
-      },
-    });
-  };
-
   return (
     <Background>
       <MovieContainer>
@@ -96,7 +82,7 @@ const MovieComponent = ({ movieData }) => {
 
               <MovieData>
                 <div>{movie.title}</div>
-                <div>{movie.vote_average}</div>
+                <div>⭐ {movie.vote_average}</div>
               </MovieData>
             </div>
           </ContentContainer>

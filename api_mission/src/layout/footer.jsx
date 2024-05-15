@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 const Container = styled.div`
   font-size: 10px;
-  padding: 20px 20px 10px;
+  padding: 20px 0px 10px 20px;
   background-color: #e9e9e9;
+  width: 100%;
 `;
 
 const Footer = () => {
