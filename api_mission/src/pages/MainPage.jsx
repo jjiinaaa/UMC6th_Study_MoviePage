@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -55,7 +55,7 @@ const SearchBox = styled.div`
   background-color: #222;
   width: 80%;
   height: 70%;
-  display: grid;
+  display: ${(props) => (props.show ? "grid" : "none")};
   overflow-y: auto;
   margin: 10px auto;
   &::-webkit-scrollbar {
@@ -114,15 +114,15 @@ const MainPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleClick = (movie) => {
-    navigate(`/movie/${movie.title}`, {
+  const handleClick = (movieData) => {
+    navigate(`/movie/${movieData.id}`, {
       state: {
-        poster_path: movie.poster_path,
-        title: movie.title,
-        overview: movie.overview,
-        vote_average: movie.vote_average,
-        release_date: movie.release_date,
-        backdrop_path: movie.backdrop_path,
+        poster_path: movieData.poster_path,
+        title: movieData.title,
+        overview: movieData.overview,
+        vote_average: movieData.vote_average,
+        release_date: movieData.release_date,
+        backdrop_path: movieData.backdrop_path,
       },
     });
   };
@@ -151,7 +151,7 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    const debounce = setTimeout(() => {
+    const delayDebounceTimer = setTimeout(() => {
       if (searchInput) {
         searchMovie(searchInput);
       } else {
@@ -159,8 +159,20 @@ const MainPage = () => {
       }
     }, 1000);
 
-    return () => clearTimeout(debounce);
+    return () => clearTimeout(delayDebounceTimer);
   }, [searchInput]);
+
+  // const SearchBoxDisplay = () => {
+  //   if (searchInput.trim() !== "") {
+  //     SearchBox = styled.div`
+  //       display: none;
+  //     `;
+  //   } else {
+  //     SearchBox = styled.div`
+  //       display: none;
+  //     `;
+  //   }
+  // };
 
   return (
     <>
@@ -178,11 +190,12 @@ const MainPage = () => {
             {loading ? "..." : "🔘"}
           </SearchButton>
         </SearchBarContainer>
-        <SearchBox>
+        <SearchBox show={movieData.length > 0}>
           {movieData.map((movie) => (
             <SearchResult key={movie.id} onClick={() => handleClick(movie)}>
               <PosterImage
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt={movie.title}
               />
               <MovieTitle>{movie.title}</MovieTitle>
               <MovieVote>⭐ {movie.vote_average}</MovieVote>

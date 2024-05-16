@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "../src/layout/layout";
 import MainPage from "./pages/MainPage";
@@ -8,6 +8,7 @@ import TopRatedPage from "./pages/TopRatePage";
 import UpcomingPage from "./pages/UpcommigPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignUp from "./pages/SignUp";
+import DetailPage from "./pages/DetailPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/nowplaying" element={<NowPlayingPage />} />
             <Route path="/toprated" element={<TopRatedPage />} />
             <Route path="/upcoming" element={<UpcomingPage />} />
+            <Route path="/movie/:id" element={<DetailPage />} />
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

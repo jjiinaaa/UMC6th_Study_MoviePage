@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 const Container = styled.div`
   width: 100%;

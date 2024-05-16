@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -60,12 +61,22 @@ const MovieData = styled.div`
   padding-bottom: 50px;
 `;
 
+// eslint-disable-next-line react/prop-types
 const MovieComponent = ({ movieData }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    navigate(`/movie/${e}`);
+  };
+
   return (
     <Background>
       <MovieContainer>
-        {movieData.map((movie, index) => (
-          <ContentContainer key={index}>
+        {movieData.map((movie) => (
+          <ContentContainer
+            key={movie.id}
+            onClick={() => handleClick(movie.id)}
+          >
             <div>
               <MovieOverview className="movie-overview">
                 <h2>{movie.title}</h2>
