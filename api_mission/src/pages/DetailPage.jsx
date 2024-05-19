@@ -11,7 +11,7 @@ const PageContainer = styled.div`
 const PosterImageBox = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   width: 50%;
-  height: 94%;
+  height: 100%;
   position: absolute;
   top: 8%;
   left: 0%;
@@ -32,7 +32,7 @@ const TextBox = styled.div`
   top: 8%;
   left: 50%;
   width: 50%;
-  height: 94%;
+  height: 100%;
   color: white;
   padding: 0 20% 0 30px;
   box-sizing: border-box;
@@ -86,7 +86,7 @@ const BackgroundImage = styled.img`
   position: absolute;
   top: 8%;
   width: 100%;
-  height: 95%;
+  height: 100%;
   z-index: -9999;
   opacity: 0.8;
   background-size: cover;

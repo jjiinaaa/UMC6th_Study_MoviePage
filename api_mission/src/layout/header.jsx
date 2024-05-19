@@ -75,8 +75,7 @@ const header = () => {
         <StyleLinkTitle to="/">UMC Movie</StyleLinkTitle>
       </LeftContainer>
       <RightContainer>
-        <StyleLink to="/signup">회원가입</StyleLink>
-        <StyleLinkLogin onClick={onLogin}>
+        <StyleLinkLogin to="/login" onClick={onLogin}>
           {loginId ? "로그인" : "로그아웃"}
         </StyleLinkLogin>
         <StyleLink to="/popular"> Popular</StyleLink>

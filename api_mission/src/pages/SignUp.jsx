@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const BackGround = styled.div`
-  padding-top: 128px;
   background-color: #222;
   height: 100%;
   color: #fff;
@@ -14,6 +13,8 @@ const BackGround = styled.div`
 const SignUpForm = styled.form`
   width: 50%;
   margin: 0 auto;
+  position: absolute;
+  top: 15%;
 `;
 
 const Title = styled.div`
