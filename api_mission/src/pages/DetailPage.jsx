@@ -3,14 +3,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-const PageContainer = styled.div``;
+const PageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const PosterImageBox = styled.div`
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 50%;
+  height: 94%;
+  position: absolute;
+  top: 8%;
+  left: 0%;
+`;
 
 const PosterImage = styled.img`
   display: block;
-  position: absolute;
-  top: 8%;
-  width: 40%;
-  height: 75%;
+  margin: 8% auto 0;
+  height: 80%;
 `;
 
 const TextBox = styled.div`
@@ -27,7 +37,6 @@ const TextBox = styled.div`
   padding: 0 20% 0 30px;
   box-sizing: border-box;
   overflow: auto;
-  opacity: 1;
   transition: all 0.5s ease-in-out;
 `;
 
@@ -63,14 +72,17 @@ const MovieOverview = styled.p`
 const Back = styled.div`
   font-size: 20px;
   color: #fdfdfd;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const BackgroundImageBox = styled.div`
   width: 100vw;
+  background-color: black;
 `;
 
 const BackgroundImage = styled.img`
-  background-color: black;
   position: absolute;
   top: 8%;
   width: 100%;
@@ -105,11 +117,13 @@ const DetailPage = () => {
 
   return (
     <div style={{ height: "100%" }}>
-      <PageContainer style={{ backgroundColor: "black" }}>
-        <PosterImage
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt={movie.title}
-        />
+      <PageContainer>
+        <PosterImageBox>
+          <PosterImage
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={movie.title}
+          />
+        </PosterImageBox>
         <TextBox>
           <MovieTitle>{movie.title}</MovieTitle>
           <MovieVote>{`평점: ${"⭐️".repeat(star)}`}</MovieVote>
@@ -128,7 +142,7 @@ const DetailPage = () => {
           </Back>
         </TextBox>
       </PageContainer>
-      <BackgroundImageBox>
+      <BackgroundImageBox style={{ backgroundColor: "black" }}>
         <BackgroundImage
           src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
           alt={movie.title}
