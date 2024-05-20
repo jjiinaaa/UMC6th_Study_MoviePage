@@ -80,7 +80,7 @@ const MovieComponent = ({ movieData }) => {
             <div>
               <MovieOverview className="movie-overview">
                 <h2>{movie.title}</h2>
-                <p>{movie.overview}</p>
+                <p style={{ fontSize: "12px" }}>{movie.overview}</p>
               </MovieOverview>
 
               <div className="movie-poster-container">

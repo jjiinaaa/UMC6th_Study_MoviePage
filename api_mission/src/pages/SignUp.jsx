@@ -11,24 +11,43 @@ const BackGround = styled.div`
 `;
 
 const SignUpForm = styled.form`
-  width: 50%;
+  width: 40%;
   margin: 0 auto;
   position: absolute;
-  top: 15%;
+  top: 13%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 30px 0;
+  background-color: rgba(155, 155, 155, 0.1);
+  @media screen and (max-width: 910px) and (min-width: 440px) {
+    min-width: 360px;
+  }
+  @media screen and (max-width: 439px) {
+    min-width: 280px;
+  }
 `;
 
 const Title = styled.div`
   padding-top: 10px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 900;
   text-align: center;
   margin-bottom: 30px;
+  @media screen and (max-width: 439px) {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
 `;
 
 const InputArea = styled.div`
   display: block;
   margin: 0 auto 16px;
-  width: 50%;
+  width: 70%;
+  font-size: 14px;
+  @media screen and (max-width: 439px) {
+    font-size: 10px;
+    margin: 0 auto 8px;
+  }
 `;
 const InputBox = styled.input`
   width: 100%;
@@ -38,6 +57,15 @@ const InputBox = styled.input`
   line-height: 24px;
   border: 1px solid #fff;
   border-radius: 10px;
+  @media screen and (max-width: 910px) {
+    min-width: 250px;
+    font-size: 10px;
+  }
+  @media screen and (max-width: 439px) {
+    font-size: 10px;
+    padding: 2px 2px 2px 2px;
+    min-width: 120px;
+  }
 `;
 
 const ErrorMessage = styled.div`
@@ -45,11 +73,32 @@ const ErrorMessage = styled.div`
   color: red;
   font-size: 12px;
   font-weight: 600;
+  @media screen and (max-width: 439px) {
+    font-size: 8px;
+  }
 `;
 
 const SubmitButton = styled.button`
   display: block;
-  margin: 30px auto 0;
+  margin: 30px auto 20px;
+  @media screen and (max-width: 439px) {
+    font-size: 10px;
+  }
+`;
+
+const LoginButton = styled.p`
+  width: 30%;
+  text-align: right;
+  font-size: 14px;
+  float: left;
+  text-align: center;
+  padding-right: 20%;
+  @media screen and (max-width: 439px) {
+    font-size: 12px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const SignUp = () => {
@@ -77,6 +126,31 @@ const SignUp = () => {
     } else {
       setNameError("");
       setNameCheckMessage(true);
+    }
+  };
+
+  // 아이디
+  const [id, setId] = useState("");
+  const [idError, setIdError] = useState("");
+  const [idCheckMessage, setIdCheckMessage] = useState(false);
+
+  const onId = (e) => {
+    const idValue = e.target.value;
+    setId(idValue);
+    idValidation(idValue);
+  };
+
+  const idValidation = async (id) => {
+    const idForm = /^[\w_-]{5,}$/;
+    if (id == "") {
+      setIdError("아이디를 작성해주세요.");
+      setIdCheckMessage(false);
+    } else if (!idForm.test(id)) {
+      setIdError("아이디 형식에 맞게 작성해주세요.");
+      setIdCheckMessage(false);
+    } else {
+      setIdError("");
+      setIdCheckMessage(true);
     }
   };
 
@@ -200,6 +274,9 @@ const SignUp = () => {
     if (name === "") {
       setNameError("이름을 입력해주세요");
     }
+    if (name === "") {
+      setIdError("아이디를 입력해주세요");
+    }
     if (email === "") {
       setEmailError("이메일을 입력해주세요");
     }
@@ -214,6 +291,7 @@ const SignUp = () => {
     }
     if (
       nameCheckMessage &&
+      idCheckMessage &&
       emailCheckMessage &&
       ageCheckMessage &&
       passwordCheckMessage &&
@@ -222,13 +300,14 @@ const SignUp = () => {
       alert("회원가입 성공!");
       const userValue = {
         name: name,
+        id: id,
         email: email,
         age: age,
         password: password,
         passwordConfirmation: passwordConfirmation,
       };
       console.log("사용자 정보 :", userValue);
-      navigate("/");
+      navigate("/login");
     } else {
       console.log("회원가입 실패");
     }
@@ -250,6 +329,13 @@ const SignUp = () => {
               />
             </div>
             {nameError && <ErrorMessage>{nameError}</ErrorMessage>}
+          </InputArea>
+          <InputArea>
+            <label htmlFor="id">아이디</label>
+            <div>
+              <InputBox type="text" placeholder="id" id="id" onChange={onId} />
+            </div>
+            {idError && <ErrorMessage>{idError}</ErrorMessage>}
           </InputArea>
           <InputArea>
             <label htmlFor="email">이메일</label>
@@ -280,7 +366,7 @@ const SignUp = () => {
             <div>
               <InputBox
                 type="password"
-                placeholder="비밀번호 입력 : 영문, 숫자, 특수기호 포함 및 4~12자"
+                placeholder="영문, 숫자, 특수기호 포함 및 4~12자"
                 id="password"
                 onChange={onPassword}
               />
@@ -306,6 +392,20 @@ const SignUp = () => {
         <SubmitButton type="submit" onClick={signUp}>
           제출하기
         </SubmitButton>
+        <p
+          style={{
+            fontSize: "12px",
+            width: "30%",
+            float: "left",
+            paddingLeft: "20%",
+            textAlign: "center",
+            paddingTop: "5px",
+            color: "rgba(255,255,255,0.8)",
+          }}
+        >
+          이미 아이디가 있으신가요?
+        </p>
+        <LoginButton>로그인 페이지로 이동하기</LoginButton>
       </SignUpForm>
     </BackGround>
   );

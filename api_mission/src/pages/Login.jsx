@@ -17,22 +17,21 @@ const SignUpForm = styled.form`
   top: 30%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 60px 30px;
+  padding: 50px 10px;
   background-color: rgba(155, 155, 155, 0.1);
 `;
 
 const Title = styled.div`
-  padding-top: 10px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 900;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const InputArea = styled.div`
   display: block;
   margin: 0 auto 16px;
-  width: 90%;
+  width: 80%;
 `;
 const InputBox = styled.input`
   width: 100%;
@@ -61,33 +60,36 @@ const SubmitButton = styled.button`
 const SignUpButton = styled.div`
   margin: 0 auto;
   text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Login = () => {
   const navigate = useNavigate();
 
   // 아이디
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [emailCheckMessage, setEmailCheckMessage] = useState(false);
+  const [id, setId] = useState("");
+  const [idError, setIdError] = useState("");
+  const [idCheckMessage, setIdCheckMessage] = useState(false);
 
-  const onEmail = (e) => {
-    const emailValue = e.target.value;
-    setEmail(emailValue);
-    emailValidation(emailValue);
+  const onId = (e) => {
+    const idValue = e.target.value;
+    setId(idValue);
+    idValidation(idValue);
   };
 
-  const emailValidation = async (email) => {
-    const emailForm = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;
-    if (email == "") {
-      setEmailError("아이디를 입력해주세요.");
-      setEmailCheckMessage(false);
-    } else if (!emailForm.test(email)) {
-      setEmailError("아이디가 아닙니다.");
-      setEmailCheckMessage(false);
+  const idValidation = async (id) => {
+    const idForm = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;
+    if (id == "") {
+      setIdError("아이디를 입력해주세요.");
+      setIdCheckMessage(false);
+    } else if (!idForm.test(id)) {
+      setIdError("아이디의 형식이 아닙니다.");
+      setIdCheckMessage(false);
     } else {
-      setEmailError("");
-      setEmailCheckMessage(true);
+      setIdError("");
+      setIdCheckMessage(true);
     }
   };
 
@@ -120,16 +122,16 @@ const Login = () => {
   // 최종 로그인
   const login = (e) => {
     e.preventDefault();
-    if (email === "") {
-      setEmailError("아이디를 입력해주세요");
+    if (id === "") {
+      setIdError("아이디를 입력해주세요");
     }
     if (password === "") {
       setPasswordError("비밀번호를 입력해주세요");
     }
-    if (emailCheckMessage && passwordCheckMessage) {
+    if (idCheckMessage && passwordCheckMessage) {
       alert("로그인 성공!");
       const userValue = {
-        email: email,
+        id: id,
         password: password,
       };
       console.log("사용자 정보 :", userValue);
@@ -155,10 +157,10 @@ const Login = () => {
                 type="text"
                 placeholder="🆔 아이디"
                 id="id"
-                onChange={onEmail}
+                onChange={onId}
               />
             </div>
-            {emailError && <ErrorMessage>{emailError}</ErrorMessage>}
+            {idError && <ErrorMessage>{idError}</ErrorMessage>}
           </InputArea>
           <InputArea>
             <div>

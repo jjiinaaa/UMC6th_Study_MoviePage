@@ -14,7 +14,10 @@ const Banner = styled.div`
   color: #e9e9e9;
   text-align: center;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 40px;
+  @media screen and (max-width: 620px) {
+    font-size: 24px;
+  }
 `;
 
 const Search = styled.div`
@@ -28,6 +31,9 @@ const Search = styled.div`
   padding-top: 50px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 620px) {
+    font-size: 20px;
+  }
 `;
 
 const SearchBarContainer = styled.div`

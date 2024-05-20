@@ -27,6 +27,7 @@ const RightContainer = styled.div`
 
 const StyleLinkTitle = styled(Link)`
   text-decoration: none;
+  text-align: center;
   padding: 16px;
   color: white;
   font-weight: 900;
@@ -39,10 +40,15 @@ const StyleLink = styled(Link)`
   text-decoration: none;
   padding: 16px;
   color: #fff;
+  font-size: 18px;
   &:hover {
     transform: scale(1.1);
     color: white;
-    border-bottom: 2px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+  @media screen and (max-width: 910px) {
+    font-size: 12px;
+    padding: 12px;
   }
 `;
 
@@ -50,10 +56,15 @@ const StyleLinkLogin = styled(Link)`
   text-decoration: none;
   padding: 16px;
   color: orange;
+  font-size: 18px;
   &:hover {
     transform: scale(1.1);
     color: orange;
     border-bottom: 2px solid #fff;
+  }
+  @media screen and (max-width: 910px) {
+    font-size: 12px;
+    padding: 12px;
   }
 `;
 
@@ -75,6 +86,7 @@ const header = () => {
         <StyleLinkTitle to="/">UMC Movie</StyleLinkTitle>
       </LeftContainer>
       <RightContainer>
+        <StyleLink to="/SignUp">회원가입</StyleLink>
         <StyleLinkLogin to="/login" onClick={onLogin}>
           {loginId ? "로그인" : "로그아웃"}
         </StyleLinkLogin>
