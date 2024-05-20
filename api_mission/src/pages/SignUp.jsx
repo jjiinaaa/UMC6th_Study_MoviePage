@@ -313,6 +313,10 @@ const SignUp = () => {
     }
   };
 
+  const onLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <BackGround>
       <SignUpForm>
@@ -405,7 +409,7 @@ const SignUp = () => {
         >
           이미 아이디가 있으신가요?
         </p>
-        <LoginButton>로그인 페이지로 이동하기</LoginButton>
+        <LoginButton onClick={onLogin}>로그인 페이지로 이동하기</LoginButton>
       </SignUpForm>
     </BackGround>
   );

@@ -19,6 +19,9 @@ const SignUpForm = styled.form`
   border-radius: 10px;
   padding: 50px 10px;
   background-color: rgba(155, 155, 155, 0.1);
+  @media screen and (max-width: 910px) {
+    min-width: 310px;
+  }
 `;
 
 const Title = styled.div`
@@ -58,10 +61,14 @@ const SubmitButton = styled.button`
 `;
 
 const SignUpButton = styled.div`
+  width: 30%;
   margin: 0 auto;
   text-align: center;
   &:hover {
     cursor: pointer;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 70%;
   }
 `;
 
@@ -80,7 +87,7 @@ const Login = () => {
   };
 
   const idValidation = async (id) => {
-    const idForm = /^[a-z0-9.\-_]+@([a-z0-9-]+\.)+[a-z]{2,6}$/;
+    const idForm = /^[\w_-]{5,}$/;
     if (id == "") {
       setIdError("아이디를 입력해주세요.");
       setIdCheckMessage(false);
