@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 const BackGround = styled.div`
   background-color: #222;
-  height: 100%;
+  height: 100vh;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -12,6 +13,7 @@ const BackGround = styled.div`
 
 const SignUpForm = styled.form`
   width: 40%;
+  min-height: 100%;
   margin: 0 auto;
   position: absolute;
   top: 13%;
@@ -269,7 +271,7 @@ const SignUp = () => {
   };
 
   // 최종 로그인
-  const signUp = (e) => {
+  const signUp = async (e) => {
     e.preventDefault();
     if (name === "") {
       setNameError("이름을 입력해주세요");
@@ -297,19 +299,21 @@ const SignUp = () => {
       passwordCheckMessage &&
       passwordConfirmationCheckMessage
     ) {
-      alert("회원가입 성공!");
-      const userValue = {
-        name: name,
-        id: id,
-        email: email,
-        age: age,
-        password: password,
-        passwordConfirmation: passwordConfirmation,
-      };
-      console.log("사용자 정보 :", userValue);
-      navigate("/login");
-    } else {
-      console.log("회원가입 실패");
+      try {
+        await axios.post("http://localhost:8080/auth/signup", {
+          name: name,
+          email: email,
+          age: age,
+          username: id,
+          password: password,
+          passwordCheck: passwordConfirmation,
+        });
+        alert("회원가입이 완료되었습니다.");
+        navigate("/login");
+      } catch (error) {
+        alert("잘못되어도 한참 잘못된 것이다.");
+        console.log(error);
+      }
     }
   };
 

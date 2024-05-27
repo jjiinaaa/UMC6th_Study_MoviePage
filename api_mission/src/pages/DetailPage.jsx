@@ -4,40 +4,56 @@ import axios from "axios";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
 
 const PosterImageBox = styled.div`
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 50%;
-  height: 100%;
-  position: absolute;
-  top: 8%;
-  left: 0%;
+  @media screen and (min-width: 911px) {
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    top: 8%;
+    left: 0%;
+  }
 `;
 
 const PosterImage = styled.img`
   display: block;
-  margin: 8% auto 0;
-  height: 80%;
+  padding: 100px 0 0;
+  margin: 0 auto;
+  width: 50%;
+  @media screen and (min-width: 911px) {
+    min-width: 379px;
+    height: 80%;
+    max-height: 600px;
+  }
+  @media screen and (max-width: 910.99px) {
+    padding-bottom: 24px;
+  }
 `;
 
 const TextBox = styled.div`
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: absolute;
-  top: 8%;
-  left: 50%;
-  width: 50%;
-  height: 100%;
   color: white;
-  padding: 0 20% 0 30px;
   box-sizing: border-box;
-  overflow: auto;
   transition: all 0.5s ease-in-out;
+  @media screen and (min-width: 911px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    padding: 0 20% 0 30px;
+  }
+  @media screen and (max-width: 910.99px) {
+    text-align: center;
+    padding: 0 30%;
+  }
 `;
 
 const MovieTitle = styled.div`
@@ -45,18 +61,19 @@ const MovieTitle = styled.div`
   font-size: 18px;
   font-weight: 900;
   margin-bottom: 8px;
+  @media screen and (max-width: 910.99px) {
+    margin-bottom: 16px;
+  }
 `;
 
 const MovieVote = styled.p`
   font-size: 14px;
-  text-align: left;
   color: white;
   margin: 0;
 `;
 
 const MovieYears = styled.p`
   font-size: 14px;
-  text-align: left;
   color: white;
   margin-bottom: 8px;
 `;
@@ -64,7 +81,6 @@ const MovieYears = styled.p`
 const MovieOverview = styled.p`
   font-size: 10px;
   line-height: 16px;
-  text-align: left;
   color: white;
   margin-bottom: 10px;
 `;
@@ -83,13 +99,13 @@ const BackgroundImageBox = styled.div`
 `;
 
 const BackgroundImage = styled.img`
-  position: absolute;
-  top: 8%;
-  width: 100%;
-  height: 100%;
   z-index: -9999;
   opacity: 0.8;
   background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 8%;
 `;
 
 const DetailPage = () => {

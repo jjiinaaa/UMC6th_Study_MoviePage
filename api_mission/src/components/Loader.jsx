@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react";
 import Spinner from "../images/Spinner.gif";
 import styled from "styled-components";
 

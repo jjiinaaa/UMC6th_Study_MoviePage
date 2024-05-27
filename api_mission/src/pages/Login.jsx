@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 const BackGround = styled.div`
@@ -61,7 +62,7 @@ const SubmitButton = styled.button`
 `;
 
 const SignUpButton = styled.div`
-  width: 30%;
+  width: 35%;
   margin: 0 auto;
   text-align: center;
   &:hover {
@@ -127,7 +128,7 @@ const Login = () => {
   };
 
   // 최종 로그인
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
     if (id === "") {
       setIdError("아이디를 입력해주세요");
@@ -136,15 +137,17 @@ const Login = () => {
       setPasswordError("비밀번호를 입력해주세요");
     }
     if (idCheckMessage && passwordCheckMessage) {
-      alert("로그인 성공!");
-      const userValue = {
-        id: id,
-        password: password,
-      };
-      console.log("사용자 정보 :", userValue);
-      navigate("/");
-    } else {
-      console.log("로그인 실패");
+      try {
+        await axios.post("http://localhost:8080/auth/login", {
+          username: id,
+          password: password,
+        });
+        alert("로그인 성공!");
+        navigate("/");
+      } catch (error) {
+        alert("로그인 실패");
+        console.log(error);
+      }
     }
   };
 

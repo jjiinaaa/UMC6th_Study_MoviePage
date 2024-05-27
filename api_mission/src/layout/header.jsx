@@ -40,7 +40,7 @@ const StyleLink = styled(Link)`
   text-decoration: none;
   padding: 16px;
   color: #fff;
-  font-size: 18px;
+  font-size: 14px;
   &:hover {
     transform: scale(1.1);
     color: white;
@@ -56,7 +56,7 @@ const StyleLinkLogin = styled(Link)`
   text-decoration: none;
   padding: 16px;
   color: orange;
-  font-size: 18px;
+  font-size: 14px;
   &:hover {
     transform: scale(1.1);
     color: orange;
