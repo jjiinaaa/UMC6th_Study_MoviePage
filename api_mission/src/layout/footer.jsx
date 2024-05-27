@@ -6,7 +6,7 @@ const Container = styled.div`
   width: 100vw;
   height: 6vh;
   padding: 18px 0 0;
-  position: absolute;
+  /* position: absolute; */
   /* z-index: 9999; */
 `;
 

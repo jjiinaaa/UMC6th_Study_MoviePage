@@ -30,6 +30,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+  /* padding-top: 8vh;S */
 }
 
 h1 {

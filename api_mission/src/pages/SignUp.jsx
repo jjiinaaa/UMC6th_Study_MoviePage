@@ -5,21 +5,19 @@ import styled from "styled-components";
 
 const BackGround = styled.div`
   background-color: #222;
-  height: 100vh;
+  min-height: 100vh;
   color: #fff;
   display: flex;
   justify-content: center;
+  padding-top: 8vh;
 `;
 
 const SignUpForm = styled.form`
   width: 40%;
-  min-height: 100%;
   margin: 0 auto;
-  position: absolute;
-  top: 13%;
+  padding: 30px 0 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 30px 0;
   background-color: rgba(155, 155, 155, 0.1);
   @media screen and (max-width: 910px) and (min-width: 440px) {
     min-width: 360px;

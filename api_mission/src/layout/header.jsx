@@ -4,14 +4,15 @@ import React, { useState } from "react";
 
 const Container = styled.div`
   width: 100%;
-  height: 8%;
+  height: 8vh;
   background-color: black;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: fixed;
-  z-index: 10;
+  /* position: fixed;
+  z-index: 10; */
   font-size: 14px;
+  /* margin-right: 18px; */
 `;
 const LeftContainer = styled.div`
   display: flex;
