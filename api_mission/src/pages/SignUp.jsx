@@ -14,7 +14,7 @@ const BackGround = styled.div`
 
 const SignUpForm = styled.form`
   width: 40%;
-  margin: 0 auto;
+  margin: 0 auto 80px;
   padding: 30px 0 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;

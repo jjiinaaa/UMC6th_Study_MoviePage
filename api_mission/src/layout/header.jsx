@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import Sidebar from "../components/Sidebar";
 
 const Container = styled.div`
   width: 100%;
@@ -69,7 +70,7 @@ const StyleLinkLogin = styled(Link)`
   }
 `;
 
-const header = () => {
+const header = (props) => {
   const [loginId, setLoginId] = useState(false);
   const onLogin = () => {
     setLoginId(!loginId);
@@ -95,6 +96,16 @@ const header = () => {
         <StyleLink to="/nowplaying">Now Playing</StyleLink>
         <StyleLink to="/toprated">Top Rated</StyleLink>
         <StyleLink to="/upcoming">Upcoming</StyleLink>
+        <Sidebar width={320}>
+          <StyleLink to="/SignUp">회원가입</StyleLink>
+          <StyleLinkLogin to="/login" onClick={onLogin}>
+            {loginId ? "로그인" : "로그아웃"}
+          </StyleLinkLogin>
+          <StyleLink to="/popular"> Popular</StyleLink>
+          <StyleLink to="/nowplaying">Now Playing</StyleLink>
+          <StyleLink to="/toprated">Top Rated</StyleLink>
+          <StyleLink to="/upcoming">Upcoming</StyleLink>
+        </Sidebar>
       </RightContainer>
     </Container>
   );

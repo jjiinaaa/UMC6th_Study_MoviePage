@@ -73,7 +73,7 @@ const SignUpButton = styled.div`
   }
 `;
 
-const Login = () => {
+const Login = ({ setLogin }) => {
   const navigate = useNavigate();
 
   // 아이디
@@ -137,16 +137,20 @@ const Login = () => {
       setPasswordError("비밀번호를 입력해주세요");
     }
     if (idCheckMessage && passwordCheckMessage) {
+      const user = { username: id, password: password };
       try {
-        await axios.post("http://localhost:8080/auth/login", {
-          username: id,
-          password: password,
-        });
+        const response = await axios.post(
+          "http://localhost:8080/auth/login",
+          user
+        );
         alert("로그인 성공!");
+        setLogin(true);
+        localStorage.setItem("token", response.data.token);
         navigate("/");
       } catch (error) {
-        alert("로그인 실패");
-        console.log(error);
+        if (error.response.status === 401) {
+          alert("로그인 실패");
+        }
       }
     }
   };

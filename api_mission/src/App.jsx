@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "../src/layout/layout";
 import MainPage from "./pages/MainPage";
@@ -12,13 +12,20 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 
 function App() {
+  const [login, setLogin] = useState(false);
+  const [userName, setUserName] = useState("");
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/login" element={<Login />} />
+          <Route
+            element={<Layout setLogin={setLogin} setUserName={setUserName} />}
+          >
+            <Route
+              path="/"
+              element={<MainPage login={login} userName={userName} />}
+            />
+            <Route path="/login" element={<Login setLogin={setLogin} />} />
             <Route path="SignUp" element={<SignUp />} />
             <Route path="/popular" element={<PopularPage />} />
             <Route path="/nowplaying" element={<NowPlayingPage />} />

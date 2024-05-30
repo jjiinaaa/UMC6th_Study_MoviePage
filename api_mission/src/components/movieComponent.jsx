@@ -10,7 +10,7 @@ const Background = styled.div`
 const MovieContainer = styled.div`
   display: grid;
   grid-gap: 20px;
-  padding: 100px 40px;
+  padding: 8vh 40px;
   @media screen and (min-width: 1280px) {
     grid-template-columns: repeat(4, 1fr);
   }

@@ -114,7 +114,7 @@ const MovieVote = styled.div`
   color: white;
 `;
 
-const MainPage = () => {
+const MainPage = (login, userName) => {
   const [searchInput, setSearchInput] = useState("");
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -179,10 +179,13 @@ const MainPage = () => {
   //     `;
   //   }
   // };
-
+  console.log(login);
+  console.log(userName);
   return (
     <>
-      <Banner>Welcom to UMC Movie!</Banner>
+      <Banner>
+        {login ? `${userName}님 환영합니다.` : "Welcom to UMC Movie!"}
+      </Banner>
       <Search>
         Find Your Movies!
         <SearchBarContainer>
