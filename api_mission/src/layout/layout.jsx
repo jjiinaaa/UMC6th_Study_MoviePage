@@ -5,8 +5,8 @@ import { Outlet } from "react-router-dom";
 import Footer from "./footer";
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 
 const Layout = () => {

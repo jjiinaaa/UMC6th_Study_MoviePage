@@ -72,11 +72,8 @@ const MovieComponent = ({ movieData }) => {
   return (
     <Background>
       <MovieContainer>
-        {movieData.map((movie) => (
-          <ContentContainer
-            key={movie.id}
-            onClick={() => handleClick(movie.id)}
-          >
+        {movieData.map((movie, index) => (
+          <ContentContainer key={index} onClick={() => handleClick(movie.id)}>
             <div>
               <MovieOverview className="movie-overview">
                 <h2>{movie.title}</h2>

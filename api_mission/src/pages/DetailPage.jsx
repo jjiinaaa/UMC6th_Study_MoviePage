@@ -4,16 +4,17 @@ import axios from "axios";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.8);
+  background-size: cover;
 `;
 
 const PosterImageBox = styled.div`
   @media screen and (min-width: 911px) {
     width: 50%;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     top: 8%;
     left: 0%;
@@ -22,16 +23,18 @@ const PosterImageBox = styled.div`
 
 const PosterImage = styled.img`
   display: block;
-  padding: 100px 0 0;
   margin: 0 auto;
   width: 50%;
   @media screen and (min-width: 911px) {
     min-width: 379px;
     height: 80%;
     max-height: 600px;
+    padding: 100px 0 0;
   }
   @media screen and (max-width: 910.99px) {
     padding-bottom: 24px;
+    padding: 50px 0 0;
+    margin-bottom: 30px;
   }
 `;
 
@@ -91,21 +94,27 @@ const Back = styled.div`
   &:hover {
     cursor: pointer;
   }
+  @media screen and (max-width: 910.99px) {
+    margin-bottom: 30px;
+  }
 `;
 
 const BackgroundImageBox = styled.div`
-  width: 100vw;
-  background-color: black;
+  z-index: -9999;
+  background-color: red;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 8vh;
 `;
 
 const BackgroundImage = styled.img`
-  z-index: -9999;
   opacity: 0.8;
   background-size: cover;
   width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 8%;
+  height: 100vh;
 `;
 
 const DetailPage = () => {

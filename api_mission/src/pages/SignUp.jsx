@@ -5,16 +5,16 @@ import styled from "styled-components";
 
 const BackGround = styled.div`
   background-color: #222;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   color: #fff;
   display: flex;
   justify-content: center;
-  padding-top: 8vh;
+  /* padding-top: 8vh; */
 `;
 
 const SignUpForm = styled.form`
   width: 40%;
-  margin: 0 auto 80px;
+  margin: 30px auto;
   padding: 30px 0 0;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;

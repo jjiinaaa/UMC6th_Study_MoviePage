@@ -5,8 +5,8 @@ import Error from "../images/error.png";
 
 const Background = styled.div`
   background-color: white;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   color: #000;
   display: flex;
   justify-content: center;
@@ -14,7 +14,9 @@ const Background = styled.div`
   flex-direction: column;
 `;
 
-const BackgourndImg = styled.img``;
+const BackgourndImg = styled.img`
+  padding-top: 150px;
+`;
 
 const EroorTitle = styled.h1`
   font-size: 35px;

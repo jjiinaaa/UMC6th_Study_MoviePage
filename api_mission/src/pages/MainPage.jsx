@@ -3,13 +3,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const BackGround = styled.div`
+  /* min-height: 82vh; */
+  /* height: 100%; */
+`;
+
 const Banner = styled.div`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 50%;
-  padding-top: 50px;
+  align-items: center; */
+  /* width: 100%; */
+  padding: 117px 0 170px;
   background-color: #222;
   color: #e9e9e9;
   text-align: center;
@@ -17,22 +21,23 @@ const Banner = styled.div`
   font-size: 40px;
   @media screen and (max-width: 620px) {
     font-size: 24px;
+    padding: 127px 0 180px;
   }
 `;
 
 const Search = styled.div`
   width: 100%;
-  height: 70%;
   text-align: center;
   background-color: #e9e9e9;
   color: #000;
   font-weight: bold;
   font-size: 30px;
-  padding-top: 50px;
+  padding: 50px 0 160px;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 620px) {
     font-size: 20px;
+    padding: 70px 0 170px;
   }
 `;
 
@@ -60,7 +65,7 @@ const SearchButton = styled.div`
 const SearchBox = styled.div`
   background-color: #222;
   width: 80%;
-  height: 70%;
+  /* height: 70%; */
   display: ${(props) => (props.show ? "grid" : "none")};
   overflow-y: auto;
   margin: 10px auto;
@@ -114,11 +119,18 @@ const MovieVote = styled.div`
   color: white;
 `;
 
-const MainPage = (login, userName) => {
+const MainPage = (login) => {
   const [searchInput, setSearchInput] = useState("");
+  const [userName, setUserName] = useState("");
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("token"));
+    const username = data.username;
+    setUserName(username);
+  }, []);
 
   const handleClick = (movieData) => {
     navigate(`/movie/${movieData.id}`, {
@@ -179,10 +191,11 @@ const MainPage = (login, userName) => {
   //     `;
   //   }
   // };
-  console.log(login);
-  console.log(userName);
+
+  // console.log(login);
+  // console.log(userName);
   return (
-    <>
+    <BackGround>
       <Banner>
         {login ? `${userName}님 환영합니다.` : "Welcom to UMC Movie!"}
       </Banner>
@@ -212,7 +225,7 @@ const MainPage = (login, userName) => {
           ))}
         </SearchBox>
       </Search>
-    </>
+    </BackGround>
   );
 };
 

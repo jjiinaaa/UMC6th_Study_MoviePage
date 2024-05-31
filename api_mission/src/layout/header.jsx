@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
+import home from "../images/home.png";
 
 const Container = styled.div`
   width: 100%;
@@ -15,6 +16,13 @@ const Container = styled.div`
   font-size: 14px;
   /* margin-right: 18px; */
 `;
+
+const SidebarContainer = styled.div`
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+`;
+
 const LeftContainer = styled.div`
   display: flex;
   align-items: center;
@@ -30,9 +38,8 @@ const RightContainer = styled.div`
 const StyleLinkTitle = styled(Link)`
   text-decoration: none;
   text-align: center;
-  padding: 16px;
+  padding-top: 8px;
   color: white;
-  font-weight: 900;
   &:hover {
     color: white;
   }
@@ -70,11 +77,19 @@ const StyleLinkLogin = styled(Link)`
   }
 `;
 
+const SidebarStyleLink = styled(Link)`
+  font-size: 18px;
+  display: block;
+  margin: 0 0 20px 20px;
+  color: white;
+`;
+
 const header = (props) => {
   const [loginId, setLoginId] = useState(false);
   const onLogin = () => {
     setLoginId(!loginId);
   };
+
   // const [clickSignUp, setClickSignUp] = useState("");
   // const navigate = useNavigate();
   // const goSignUp = (e) => {
@@ -85,18 +100,12 @@ const header = (props) => {
   return (
     <Container>
       <LeftContainer>
-        <StyleLinkTitle to="/">UMC Movie</StyleLinkTitle>
+        <StyleLinkTitle to="/">
+          <img src={home} alt="UMC Movie" style={{ width: "50%" }} />
+        </StyleLinkTitle>
       </LeftContainer>
       <RightContainer>
-        <StyleLink to="/SignUp">회원가입</StyleLink>
-        <StyleLinkLogin to="/login" onClick={onLogin}>
-          {loginId ? "로그인" : "로그아웃"}
-        </StyleLinkLogin>
-        <StyleLink to="/popular"> Popular</StyleLink>
-        <StyleLink to="/nowplaying">Now Playing</StyleLink>
-        <StyleLink to="/toprated">Top Rated</StyleLink>
-        <StyleLink to="/upcoming">Upcoming</StyleLink>
-        <Sidebar width={320}>
+        <SidebarContainer>
           <StyleLink to="/SignUp">회원가입</StyleLink>
           <StyleLinkLogin to="/login" onClick={onLogin}>
             {loginId ? "로그인" : "로그아웃"}
@@ -105,6 +114,16 @@ const header = (props) => {
           <StyleLink to="/nowplaying">Now Playing</StyleLink>
           <StyleLink to="/toprated">Top Rated</StyleLink>
           <StyleLink to="/upcoming">Upcoming</StyleLink>
+        </SidebarContainer>
+        <Sidebar width={300}>
+          <SidebarStyleLink to="/SignUp">회원가입</SidebarStyleLink>
+          <SidebarStyleLink to="/login" onClick={onLogin}>
+            {loginId ? "로그인" : "로그아웃"}
+          </SidebarStyleLink>
+          <SidebarStyleLink to="/popular"> Popular</SidebarStyleLink>
+          <SidebarStyleLink to="/nowplaying">Now Playing</SidebarStyleLink>
+          <SidebarStyleLink to="/toprated">Top Rated</SidebarStyleLink>
+          <SidebarStyleLink to="/upcoming">Upcoming</SidebarStyleLink>
         </Sidebar>
       </RightContainer>
     </Container>

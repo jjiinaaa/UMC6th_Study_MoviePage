@@ -1,15 +1,17 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
+import close from "../images/close.png";
+import menu from "../images/menu.png";
 
 const Container = styled.div`
   background-color: #e3ecf1;
-  @media screen and (min-width: 700px) {
-    display: none;
+  display: none;
+  @media screen and (max-width: 700px) {
+    display: flex;
   }
 `;
 const SidebarBox = styled.div`
-  background-color: #e3ecf1;
-  border-left: 4px solid #202020;
+  background-color: #222;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -28,9 +30,9 @@ const SidebarBtn = styled.button`
   height: 40px;
   z-index: 99;
   transition: 0.8s ease;
-  border: 2px solid #202020;
   border-radius: 40px;
   overflow: hidden;
+  background-color: transparent;
 `;
 
 const OpenBtn = styled.img`
@@ -39,9 +41,9 @@ const OpenBtn = styled.img`
 `;
 
 const Content = styled.div`
-  padding: 40px 40px 0 20px;
   position: relative;
   width: 100%;
+  font-size: 100px;
 `;
 
 const Sidebar = ({ width = 280, children }) => {
@@ -83,18 +85,36 @@ const Sidebar = ({ width = 280, children }) => {
 
   return (
     <Container>
-      <SidebarBox>
+      <SidebarBox
+        ref={side}
+        style={{
+          width: `${width}px`,
+          height: "100%",
+          transform: `translatex(${-xPosition}px)`,
+        }}
+      >
         <SidebarBtn onClick={() => sidebarButton()}>
           {isOpen ? (
-            <open>X</open>
+            <img
+              src={close}
+              style={{
+                display: "block",
+                width: "25px",
+                height: "25px",
+                position: "absolute",
+                left: "7px",
+                top: "7px",
+              }}
+            ></img>
           ) : (
             <OpenBtn
               src="https://via.placeholder.com/250x250"
               alt="Content Open Button"
-            />
+            ></OpenBtn>
           )}
         </SidebarBtn>
         <Content>{children}</Content>
+        {/* 사이드바 컴포넌트 내부 값이 구현되는 값 */}
       </SidebarBox>
     </Container>
 

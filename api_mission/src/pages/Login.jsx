@@ -4,18 +4,19 @@ import axios from "axios";
 import styled from "styled-components";
 
 const BackGround = styled.div`
+  padding: 148px 0;
   background-color: #222;
-  height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
   color: #fff;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
 `;
 
 const SignUpForm = styled.form`
   width: 30%;
+  padding: 100px;
   margin: 0 auto;
-  position: absolute;
-  top: 30%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 50px 10px;
@@ -145,7 +146,8 @@ const Login = ({ setLogin }) => {
         );
         alert("로그인 성공!");
         setLogin(true);
-        localStorage.setItem("token", response.data.token);
+        console.log(JSON.stringify(response.data));
+        localStorage.setItem("token", JSON.stringify(response.data));
         navigate("/");
       } catch (error) {
         if (error.response.status === 401) {

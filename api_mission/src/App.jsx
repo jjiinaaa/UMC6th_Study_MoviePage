@@ -13,7 +13,7 @@ import SignUp from "./pages/SignUp";
 
 function App() {
   const [login, setLogin] = useState(false);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState();
   return (
     <>
       <BrowserRouter>
@@ -23,7 +23,7 @@ function App() {
           >
             <Route
               path="/"
-              element={<MainPage login={login} userName={userName} />}
+              element={<MainPage login={login} username={userName} />}
             />
             <Route path="/login" element={<Login setLogin={setLogin} />} />
             <Route path="SignUp" element={<SignUp />} />
