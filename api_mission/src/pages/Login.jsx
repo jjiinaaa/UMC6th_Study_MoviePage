@@ -145,11 +145,13 @@ const Login = ({ setLogin }) => {
           user
         );
         alert("로그인 성공!");
-        setLogin(true);
-        console.log(JSON.stringify(response.data));
+        console.log(response.data);
         localStorage.setItem("token", JSON.stringify(response.data));
+        setLogin(true);
+        // 안돼서
         navigate("/");
       } catch (error) {
+        console.log(error);
         if (error.response.status === 401) {
           alert("로그인 실패");
         }
@@ -185,6 +187,7 @@ const Login = ({ setLogin }) => {
                 placeholder="🤐 비밀번호"
                 id="password"
                 onChange={onPassword}
+                autoComplete="off"
               />
               {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
             </div>

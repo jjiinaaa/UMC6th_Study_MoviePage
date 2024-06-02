@@ -192,7 +192,6 @@ const SignUp = () => {
 
   const ageValidation = async (age) => {
     const ageForm = /^[0-9]+$/;
-    console.log("확인", Number.isNaN(parseInt(3.0)));
     if (age == "") {
       setAgeError("나이을 입력해주세요.");
       setAgeCheckMessage(false);
@@ -375,6 +374,7 @@ const SignUp = () => {
                 placeholder="영문, 숫자, 특수기호 포함 및 4~12자"
                 id="password"
                 onChange={onPassword}
+                autoComplete="off"
               />
               {passwordError && <ErrorMessage>{passwordError}</ErrorMessage>}
             </div>
@@ -387,6 +387,7 @@ const SignUp = () => {
                 placeholder="비밀번호 확인"
                 id="passwordConfirm"
                 onChange={onPasswordConfirmation}
+                autoComplete="off"
               />
             </div>
             {passwordConfirmation && (

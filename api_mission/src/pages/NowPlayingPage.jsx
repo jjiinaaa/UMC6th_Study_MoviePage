@@ -19,7 +19,7 @@ const NowPlayingPage = () => {
         }
       );
 
-      console.log(res);
+      // console.log(res);
       setMovieData((prevMovies) => [...prevMovies, ...res.data.results]);
     } catch (error) {
       console.log(error);

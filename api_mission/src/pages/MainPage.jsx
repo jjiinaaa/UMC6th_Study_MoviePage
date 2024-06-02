@@ -119,18 +119,25 @@ const MovieVote = styled.div`
   color: white;
 `;
 
-const MainPage = (login) => {
+const MainPage = ({ login }) => {
   const [searchInput, setSearchInput] = useState("");
   const [userName, setUserName] = useState("");
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("token"));
-    const username = data.username;
-    setUserName(username);
-  }, []);
+  // const setLoginToTrue = () => {
+  //   setLogin(true);
+  // };
+
+  // useEffect(() => {
+  //   // const data = localStorage.getItem("token");
+
+  //   // console.log(data + "데이터 확인");
+  //   // console.log(login + "확인");
+  //   // const username = data.username;
+  //   // setUserName(username);
+  // }, []);
 
   const handleClick = (movieData) => {
     navigate(`/movie/${movieData.id}`, {
@@ -180,20 +187,6 @@ const MainPage = (login) => {
     return () => clearTimeout(delayDebounceTimer);
   }, [searchInput]);
 
-  // const SearchBoxDisplay = () => {
-  //   if (searchInput.trim() !== "") {
-  //     SearchBox = styled.div`
-  //       display: none;
-  //     `;
-  //   } else {
-  //     SearchBox = styled.div`
-  //       display: none;
-  //     `;
-  //   }
-  // };
-
-  // console.log(login);
-  // console.log(userName);
   return (
     <BackGround>
       <Banner>

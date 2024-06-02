@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { styled, css } from "styled-components";
+import axios from "axios";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import home from "../images/home.png";
 
@@ -17,7 +18,7 @@ const Container = styled.div`
   /* margin-right: 18px; */
 `;
 
-const SidebarContainer = styled.div`
+const HeaderbarContainer = styled.div`
   @media screen and (max-width: 700px) {
     display: none;
   }
@@ -75,6 +76,18 @@ const StyleLinkLogin = styled(Link)`
     font-size: 12px;
     padding: 12px;
   }
+  ${(props) =>
+    props.logout &&
+    css`
+      color: #ffff;
+      font-weight: 500;
+    `}
+  ${(props) =>
+    props.$menuPath === props.pathname &&
+    css`
+      color: #ffff;
+      font-weight: 500;
+    `}
 `;
 
 const SidebarStyleLink = styled(Link)`
@@ -84,46 +97,144 @@ const SidebarStyleLink = styled(Link)`
   color: white;
 `;
 
-const header = (props) => {
-  const [loginId, setLoginId] = useState(false);
-  const onLogin = () => {
-    setLoginId(!loginId);
+const header = ({ login, setLogin }) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  const homeClick = () => {
+    navigate("/");
+    window.location.href = "/";
   };
 
-  // const [clickSignUp, setClickSignUp] = useState("");
-  // const navigate = useNavigate();
-  // const goSignUp = (e) => {
-  //   navigate("/signup");
-  //   setClickSignUp(e.target.textContent);
-  // };
+  useEffect(() => {
+    const Login = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        console.log(token);
+        const response = await axios.get("http://localhost:8080/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response + "헤더용 리스폰스");
+        setLogin(true);
+        // setUserName(response.data.username);
+      } catch (error) {
+        console.log(error + "헤더용 에러");
+        setLogin(false);
+      }
+    };
+
+    Login();
+  }, [login]);
+
+  const Logout = () => {
+    localStorage.removeItem("token");
+    setLogin(false);
+    // SetLogin 작동 안 함.
+    // console.log(login);
+  };
 
   return (
     <Container>
       <LeftContainer>
-        <StyleLinkTitle to="/">
+        <StyleLinkTitle onClick={homeClick}>
           <img src={home} alt="UMC Movie" style={{ width: "50%" }} />
         </StyleLinkTitle>
       </LeftContainer>
       <RightContainer>
-        <SidebarContainer>
-          <StyleLink to="/SignUp">회원가입</StyleLink>
-          <StyleLinkLogin to="/login" onClick={onLogin}>
-            {loginId ? "로그인" : "로그아웃"}
-          </StyleLinkLogin>
-          <StyleLink to="/popular"> Popular</StyleLink>
-          <StyleLink to="/nowplaying">Now Playing</StyleLink>
-          <StyleLink to="/toprated">Top Rated</StyleLink>
-          <StyleLink to="/upcoming">Upcoming</StyleLink>
-        </SidebarContainer>
+        <HeaderbarContainer>
+          {login ? (
+            <StyleLinkLogin onClick={Logout} logout={login}>
+              로그아웃
+            </StyleLinkLogin>
+          ) : (
+            <>
+              <StyleLinkLogin
+                to="/login"
+                $menuPath={"/login"}
+                pathname={pathname}
+              >
+                로그인
+              </StyleLinkLogin>
+              <StyleLinkLogin
+                to="/SignUp"
+                $menuPath={"/signup"}
+                pathname={pathname}
+              >
+                회원가입
+              </StyleLinkLogin>
+            </>
+          )}
+
+          <StyleLink to="/popular" $menuPath={"/popular"} pathname={pathname}>
+            Popular
+          </StyleLink>
+          <StyleLink
+            to="/nowplaying"
+            $menuPath={"/nowplaying"}
+            pathname={pathname}
+          >
+            Now Playing
+          </StyleLink>
+          <StyleLink to="/toprated" $menuPath={"/toprated"} pathname={pathname}>
+            Top Rated
+          </StyleLink>
+          <StyleLink to="/upcoming" $menuPath={"/upcoming"} pathname={pathname}>
+            Upcoming
+          </StyleLink>
+        </HeaderbarContainer>
         <Sidebar width={300}>
-          <SidebarStyleLink to="/SignUp">회원가입</SidebarStyleLink>
-          <SidebarStyleLink to="/login" onClick={onLogin}>
-            {loginId ? "로그인" : "로그아웃"}
+          {login ? (
+            <SidebarStyleLink onClick={Logout} logout={login}>
+              로그아웃
+            </SidebarStyleLink>
+          ) : (
+            <>
+              <SidebarStyleLink
+                to="/login"
+                $menuPath={"/login"}
+                pathname={pathname}
+              >
+                로그인
+              </SidebarStyleLink>
+              <SidebarStyleLink
+                to="/SignUp"
+                $menuPath={"/signup"}
+                pathname={pathname}
+              >
+                회원가입
+              </SidebarStyleLink>
+            </>
+          )}
+          <SidebarStyleLink
+            to="/popular"
+            $menuPath={"/popular"}
+            pathname={pathname}
+          >
+            Popular
           </SidebarStyleLink>
-          <SidebarStyleLink to="/popular"> Popular</SidebarStyleLink>
-          <SidebarStyleLink to="/nowplaying">Now Playing</SidebarStyleLink>
-          <SidebarStyleLink to="/toprated">Top Rated</SidebarStyleLink>
-          <SidebarStyleLink to="/upcoming">Upcoming</SidebarStyleLink>
+          <SidebarStyleLink
+            to="/nowplaying"
+            $menuPath={"/nowplaying"}
+            pathname={pathname}
+          >
+            Now Playing
+          </SidebarStyleLink>
+          <SidebarStyleLink
+            to="/toprated"
+            $menuPath={"/toprated"}
+            pathname={pathname}
+          >
+            Top Rated
+          </SidebarStyleLink>
+          <SidebarStyleLink
+            to="/upcoming"
+            $menuPath={"/upcoming"}
+            pathname={pathname}
+          >
+            Upcoming
+          </SidebarStyleLink>
         </Sidebar>
       </RightContainer>
     </Container>
