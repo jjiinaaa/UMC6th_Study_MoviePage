@@ -74,7 +74,7 @@ const SignUpButton = styled.div`
   }
 `;
 
-const Login = ({ setLogin }) => {
+const Login = () => {
   const navigate = useNavigate();
 
   // 아이디
@@ -147,8 +147,6 @@ const Login = ({ setLogin }) => {
         alert("로그인 성공!");
         console.log(response.data);
         localStorage.setItem("token", JSON.stringify(response.data));
-        setLogin(true);
-        // 안돼서
         navigate("/");
       } catch (error) {
         console.log(error);

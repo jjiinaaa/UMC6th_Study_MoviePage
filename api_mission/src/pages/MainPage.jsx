@@ -120,24 +120,19 @@ const MovieVote = styled.div`
 `;
 
 const MainPage = ({ login }) => {
+  // PROPS로 유저네임을 받아서 배너에 출력 + 기존에 있던 유저네임 스테이트랑 관련 함수 지우기
+  // 이유: 유저네임을 API로 받아오니까
   const [searchInput, setSearchInput] = useState("");
   const [userName, setUserName] = useState("");
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // const setLoginToTrue = () => {
-  //   setLogin(true);
-  // };
-
-  // useEffect(() => {
-  //   // const data = localStorage.getItem("token");
-
-  //   // console.log(data + "데이터 확인");
-  //   // console.log(login + "확인");
-  //   // const username = data.username;
-  //   // setUserName(username);
-  // }, []);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("token"));
+    const username = data.username;
+    setUserName(username);
+  }, []);
 
   const handleClick = (movieData) => {
     navigate(`/movie/${movieData.id}`, {

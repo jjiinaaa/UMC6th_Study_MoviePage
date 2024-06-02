@@ -14,12 +14,22 @@ import Header from "./layout/header";
 import Footer from "./layout/footer";
 
 function App() {
+  // username 만들기 + 설정 함수 만들기 + 메인페이지로 전달
   const [login, setLogin] = useState(false);
-  const [userName, setUserName] = useState("");
+  const handleLogin = () => {
+    setLogin(true);
+  };
+  const handleLogout = () => {
+    setLogin(false);
+  };
   return (
     <>
       <BrowserRouter>
-        <Header login={login} setLogin={setLogin} setUserName={setUserName} />
+        <Header
+          login={login}
+          handleLogin={handleLogin}
+          handleLogout={handleLogout}
+        />
         <Routes>
           <Route path="/" element={<MainPage login={login} />} />
           <Route path="/login" element={<Login setLogin={setLogin} />} />

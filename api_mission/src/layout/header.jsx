@@ -97,7 +97,7 @@ const SidebarStyleLink = styled(Link)`
   color: white;
 `;
 
-const header = ({ login, setLogin }) => {
+const header = ({ login, handleLogin, handleLogout }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -109,28 +109,27 @@ const header = ({ login, setLogin }) => {
   useEffect(() => {
     const Login = async () => {
       try {
-        const token = localStorage.getItem("token");
-        console.log(token);
+        const token = JSON.parse(localStorage.getItem("token"));
+        console.log(token.token);
         const response = await axios.get("http://localhost:8080/auth/me", {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.token}`,
           },
         });
-        console.log(response + "헤더용 리스폰스");
-        setLogin(true);
-        // setUserName(response.data.username);
+        // response를 이용해 username 설정
+        if (response === null) return;
+        handleLogin();
       } catch (error) {
         console.log(error + "헤더용 에러");
-        setLogin(false);
       }
     };
 
     Login();
-  }, [login]);
+  }, []);
 
   const Logout = () => {
     localStorage.removeItem("token");
-    setLogin(false);
+    handleLogout();
     // SetLogin 작동 안 함.
     // console.log(login);
   };
