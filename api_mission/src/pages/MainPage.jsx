@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// commit test
+
 const BackGround = styled.div`
   /* min-height: 82vh; */
   /* height: 100%; */
@@ -184,9 +186,8 @@ const MainPage = ({ login }) => {
 
   return (
     <BackGround>
-      <Banner>
-        {login ? `${userName}님 환영합니다.` : "Welcom to UMC Movie!"}
-      </Banner>
+      <Banner>{login ? `${userName}님 환영합니다.` : "환영합니다!"}</Banner>
+
       <Search>
         Find Your Movies!
         <SearchBarContainer>
