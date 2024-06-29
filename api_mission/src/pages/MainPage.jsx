@@ -121,20 +121,11 @@ const MovieVote = styled.div`
   color: white;
 `;
 
-const MainPage = ({ login }) => {
-  // PROPS로 유저네임을 받아서 배너에 출력 + 기존에 있던 유저네임 스테이트랑 관련 함수 지우기
-  // 이유: 유저네임을 API로 받아오니까
+const MainPage = ({ login, username }) => {
   const [searchInput, setSearchInput] = useState("");
-  const [userName, setUserName] = useState("");
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("token"));
-    const username = data.username;
-    setUserName(username);
-  }, []);
 
   const handleClick = (movieData) => {
     navigate(`/movie/${movieData.id}`, {
@@ -186,7 +177,7 @@ const MainPage = ({ login }) => {
 
   return (
     <BackGround>
-      <Banner>{login ? `${userName}님 환영합니다.` : "환영합니다!"}</Banner>
+      <Banner>{login ? `${username}님 환영합니다.` : "환영합니다!"}</Banner>
 
       <Search>
         Find Your Movies!

@@ -97,7 +97,7 @@ const SidebarStyleLink = styled(Link)`
   color: white;
 `;
 
-const header = ({ login, handleLogin, handleLogout }) => {
+const header = ({ login, handleLogin, handleLogout, usernameApi }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -116,8 +116,8 @@ const header = ({ login, handleLogin, handleLogout }) => {
             Authorization: `Bearer ${token.token}`,
           },
         });
-        // response를 이용해 username 설정
         if (response === null) return;
+        usernameApi(response.data.name);
         handleLogin();
       } catch (error) {
         console.log(error + "헤더용 에러");
@@ -130,8 +130,6 @@ const header = ({ login, handleLogin, handleLogout }) => {
   const Logout = () => {
     localStorage.removeItem("token");
     handleLogout();
-    // SetLogin 작동 안 함.
-    // console.log(login);
   };
 
   return (

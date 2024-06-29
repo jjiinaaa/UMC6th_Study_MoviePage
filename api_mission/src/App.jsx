@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Layout from "../src/layout/layout";
 import MainPage from "./pages/MainPage";
 import PopularPage from "./pages/PopularPage";
 import NowPlayingPage from "./pages/NowPlayingPage";
@@ -14,8 +13,13 @@ import Header from "./layout/header";
 import Footer from "./layout/footer";
 
 function App() {
-  // username 만들기 + 설정 함수 만들기 + 메인페이지로 전달
+  const [username, setUsername] = useState("");
   const [login, setLogin] = useState(false);
+
+  const usernameApi = (e) => {
+    setUsername(e);
+  };
+
   const handleLogin = () => {
     setLogin(true);
   };
@@ -29,9 +33,13 @@ function App() {
           login={login}
           handleLogin={handleLogin}
           handleLogout={handleLogout}
+          usernameApi={usernameApi}
         />
         <Routes>
-          <Route path="/" element={<MainPage login={login} />} />
+          <Route
+            path="/"
+            element={<MainPage login={login} username={username} />}
+          />
           <Route path="/login" element={<Login setLogin={setLogin} />} />
           <Route path="SignUp" element={<SignUp />} />
           <Route path="/popular" element={<PopularPage />} />
@@ -41,8 +49,8 @@ function App() {
           <Route path="/movie/:id" element={<DetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 }
